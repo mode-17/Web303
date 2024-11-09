@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step3</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body class="bg-gradient-to-r from-green-200 to-green-100 min-h-screen flex items-center justify-center px-5 py-5">
+    <div class="bg-white p-10 rounded-lg shadow-lg min-w-full md:min-w-0">
+        <header class="flex items-center justify-between pb-10">
+            <img src="WEB303 1.svg" alt="Logo placeholder image" class="mr-2">
+            <div class="space-x-4 mb-8 flex">
+                <div class="flex items-center">
+                    <div class="text-gray-500">
+                        <span class="font-bold text-lg">1</span>
+                        Basic Info
+                    </div>
+                    <div class="w-16 h-1 bg-gray-300 rounded-full ml-2"></div>
+                </div>
+                <div class="flex items-center">
+                    <div class="text-gray-500">
+                        <span class="font-bold text-lg">2</span>
+                        Preferences
+                    </div>
+                    <div class="w-16 h-1 bg-blue-600 rounded-full ml-2"></div>
+                </div>
+                <div class="flex items-center">
+                    <div class="text-blue-600">
+                        <span class="font-bold text-lg">3</span>
+                        Additional Info
+                    </div>
+                </div>
+            </div>
+        </header>
+        <h2 class="text-3xl font-semibold mb-8">Let's get you started</h2>
+        <p class="text-sm font-light mb-4">Enter the details to get going</p>
+
+        <!-- Form starts here -->
+        <form id="registrationForm" method="POST">
+            <input type="hidden" name="user_email" value="{{ email }}">
+            <input type="hidden" name="user_password" value="{{ user_password }}">
+
+            <div class="mb-8">
+                <h3 class="font-bold mb-2">Professional Background</h3>
+                <input type="text" placeholder="Occupation" class="mb-4 p-2 border border-gray-300 rounded w-full">
+                <input type="text" placeholder="Industry" class="mb-4 p-2 border border-gray-300 rounded w-full">
+                <input type="text" placeholder="Company Name" class="mb-4 p-2 border border-gray-300 rounded w-full">
+            </div>
+
+            <div class="mb-8">
+                <h3 class="font-bold mb-2">Contact Information</h3>
+                <input type="number" placeholder="Phone Number" class="mb-4 p-2 border border-gray-300 rounded w-full">
+                <input type="text" placeholder="LinkedIn Profile" class="mb-4 p-2 border border-gray-300 rounded w-full">
+            </div>
+
+            <div class="mb-8">
+                <h3 class="font-bold mb-2">Newsletter Subscription:</h3>
+                <label class="block mb-2">
+                    <input type="checkbox" class="mr-2"> AI news
+                </label>
+                <label class="block mb-2">
+                    <input type="checkbox" class="mr-2"> Events
+                </label>
+                <label class="block">
+                    <input type="checkbox" class="mr-2"> Resources
+                </label>
+            </div>
+
+            <!-- Buttons for navigation and submission -->
+            <div class="flex justify-between">
+                <!-- Back button to go to registration2.html -->
+                <a href="registration2.html" class="border border-blue-500 text-blue-500 rounded px-6 py-2 font-semibold">Back</a>
+                <!-- Submit button triggers the confirmation and redirect -->
+                <button type="submit" class="bg-blue-500 text-white rounded px-6 py-2 font-semibold">Submit</button>
+            </div>
+        </form>
+
+        <footer class="text-right text-xs text-gray-400 mt-8">
+            Made By Mr.Styles
+        </footer>
+    </div>
+
+    <!-- JavaScript for form submission handling -->
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting the usual way
+
+            // Show confirmation popup
+            if (confirm("Form submitted successfully! Redirecting to your dashboard...")) {
+                // Redirect to dashboard.html
+                window.location.href = "dashboard.html";
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-r from-green-100 to-green-200 h-screen flex justify-center items-center">
+    <div class="w-3/4 mx-auto bg-white rounded-lg shadow-xl p-8">
+        <header class="flex items-center justify-between pb-6">
+            <div>
+                <img src="WEB303 1.svg" alt="Logo placeholder image" class="mr-2">
+            </div>
+        </header>
+        <div>
+            <h1 class="text-3xl font-bold mb-2">Let's get you started</h1>
+            <p class="mb-10">Enter the details to get going</p>
+            <div class="space-x-4 mb-8 flex">
+                <div class="flex items-center">
+                    <div class="text-gray-500">
+                        <span class="font-bold text-lg">1</span>
+                        Basic Info
+                    </div>
+                    <div class="w-16 h-1 bg-blue-600 rounded-full ml-2"></div>
+                </div>
+                <div class="flex items-center">
+                    <div class="text-blue-600">
+                        <span class="font-bold text-lg">2</span>
+                        Preferences
+                    </div>
+                    <div class="w-16 h-1 bg-gray-300 rounded-full ml-2"></div>
+                </div>
+                <div class="flex items-center">
+                    <div class="text-gray-500">
+                        <span class="font-bold text-lg">3</span>
+                        Additional Info
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form for preferences -->
+            <form id="registrationForm" method="POST">
+                <!-- Hidden fields for email and password -->
+                <input type="hidden" name="user_email" value="{{ email }}">
+                <input type="hidden" name="user_password" value="{{ user_password }}">
+
+                <!-- Dropdowns for various preferences -->
+                <div class="mb-6">
+                    <label for="interest" class="text-gray-700 mb-2 block">Areas of interest within AI</label>
+                    <select id="interest" name="interest" class="w-full p-3 border border-gray-300 rounded" required>
+                        <option value="" disabled selected>Select your area of interest</option>
+                        <option value="Machine Learning">Machine Learning</option>
+                        <option value="Natural Language Processing">Natural Language Processing</option>
+                        <option value="Computer Vision">Computer Vision</option>
+                        <option value="Robotics">Robotics</option>
+                        <option value="Reinforcement Learning">Reinforcement Learning</option>
+                    </select>
+                </div>
+
+                <div class="mb-6">
+                    <label for="experience" class="text-gray-700 mb-2 block">Experience level with AI</label>
+                    <select id="experience" name="experience" class="w-full p-3 border border-gray-300 rounded" required>
+                        <option value="" disabled selected>Select your experience level</option>
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                    </select>
+                </div>
+
+                <div class="mb-6">
+                    <label for="learning" class="text-gray-700 mb-2 block">Preferred learning style</label>
+                    <select id="learning" name="learning" class="w-full p-3 border border-gray-300 rounded" required>
+                        <option value="" disabled selected>Select your preferred learning style</option>
+                        <option value="Video tutorials">Video tutorials</option>
+                        <option value="Articles">Articles</option>
+                        <option value="Workshops">Workshops</option>
+                        <option value="Interactive projects">Interactive projects</option>
+                    </select>
+                </div>
+
+                <!-- Textarea for open-ended questions -->
+                <div class="mb-6">
+                    <label for="topics" class="text-gray-700 mb-2 block">Open-ended Questions</label>
+                    <textarea id="topics" name="topics" placeholder="What specific AI topics or projects are you interested in exploring?" class="w-full p-3 border border-gray-300 rounded" required></textarea>
+                </div>
+
+                <div class="mb-6">
+                    <textarea name="challenges" placeholder="Are there any particular AI challenges or problems you'd like to solve?" class="w-full p-3 border border-gray-300 rounded" required></textarea>
+                </div>
+
+                <!-- Navigation buttons -->
+                <div class="flex justify-between">
+                    <!-- Back button will go to registration1.html -->
+                    <button type="button" id="backButton" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Back</button>
+                    <!-- Next button submits the form data -->
+                    <button type="button" id="nextButton" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Next</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to handle back and next navigation
+        document.getElementById("backButton").addEventListener("click", function() {
+            // Redirects to the previous page
+            window.location.href = "registration1.html";
+        });
+
+        document.getElementById("nextButton").addEventListener("click", function() {
+            // Validate the form inputs
+            window.location.href = "registration3.html";
+            
+            const form = document.getElementById("registrationForm");
+            if (form.checkValidity()) {
+                // Form is valid, save form data to localStorage
+                localStorage.setItem("formData", JSON.stringify({
+                    email: form.user_email.value,
+                    user_password: form.user_password.value,
+                    interest: form.interest.value,
+                    experience: form.experience.value,
+                    learning: form.learning.value,
+                    topics: form.topics.value,
+                    challenges: form.challenges.value
+                }));
+
+                // Redirect to registration3.html (GET request, no POST)
+                window.location.href = "registration3.html";
+            } else {
+                // If form is invalid, trigger native HTML5 validation
+                form.reportValidity();
+            }
+        });
+    </script>
+</body>
+
+</html>
